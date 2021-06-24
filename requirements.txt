@@ -1,2 +1,9 @@
 numpy
 torch
+scipy
+matplotlib
+sklearn
+warnings
+os 
+math
+networkx 
