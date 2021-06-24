@@ -4,7 +4,6 @@ Large-scale nonlinear Granger causality
 
 The code converts multivariate time-series data to graph adjacency matrix that represents causal relationships. 
 
-\textbf{is this latex}
 
 -----------------------------------------
 Note: If you use this code (partially or as a whole), please cite the following paper:
