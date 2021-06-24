@@ -3,6 +3,7 @@
 """
 Created on Wed Jun 23 00:20:06 2021
 
+The code takes in restricted "RSS_R" and unrestricted "RSS_U" models, number of parameters in restricted and unrestricted models as "pu" and "pr", and "n" 
 @author: welcome
 """
 
