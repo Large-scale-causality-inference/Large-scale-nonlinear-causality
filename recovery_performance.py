@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun 23 00:51:59 2021
+The code returns performance measures (in terms of AUROC) given a list of 
+"Adjs": data matrices and 
+"label": label matrices. 
 
-@author: welcome
+@Reference: 
+Wismüller, A., Dsouza, A.M., Vosoughi, M.A. et al. 
+Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data. Sci Rep 11, 7817 (2021).
+
 """
 import numpy as np
 from sklearn import metrics
@@ -12,10 +17,6 @@ from sklearn import metrics
 def recovery_performance(Adjs,label):
     Adjs=Adjs.copy()
     label=label.copy()
-#    data=np.zeros((len(Adjs),len(Adjs[0].flatten())))
-#    for i in range(len(Adjs)):
-#        data[i,:]=Adjs[i].flatten()       
-#    # Data Separation
     N=len(Adjs)
     auc_all = np.zeros((N), dtype=np.float32)
     
