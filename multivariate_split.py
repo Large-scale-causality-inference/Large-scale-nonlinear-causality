@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jun 23 00:16:28 2021
 
-@author: welcome
+@Reference: 
+Wismüller, A., Dsouza, A.M., Vosoughi, M.A. et al. 
+Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data. Sci Rep 11, 7817 (2021).
 """
 import torch
 import numpy as np
