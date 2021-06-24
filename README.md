@@ -1,6 +1,7 @@
 # Codes for nonlinear Granger causality 
 
-Large-scale nonlinear Granger causality to infer causal graphs from multivariate time-series
+**Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data
+**
 
 The code converts multivariate time-series data to graph adjacency matrix that represents causal relationships. 
 
