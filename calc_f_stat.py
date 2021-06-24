@@ -3,7 +3,9 @@
 """
 Input: RSS_R,RSS_U,n,pu,pr
 Output: 
-The code takes in restricted "RSS_R" and unrestricted "RSS_U" models, number of parameters in restricted and unrestricted models as "pu" and "pr", and "n" is the number of time-delayed vectors. 
+The code takes in restricted "RSS_R" and unrestricted "RSS_U" models, number of parameters 
+in restricted and unrestricted models as "pu" and "pr", and "n" 
+is the number of time-delayed vectors. 
 
 """
 
