@@ -8,7 +8,7 @@ Output: f_GC as values of f-statistic
 - "pu" and "pr" are the number of parameters to be estimated for the unrestricted and restricted model, respectively. 
 - "n" is the number of time-delayed vectors. 
 
-@author: 
+@Reference: 
 Wismüller, A., Dsouza, A.M., Vosoughi, M.A. et al. 
 Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data. Sci Rep 11, 7817 (2021).
 
