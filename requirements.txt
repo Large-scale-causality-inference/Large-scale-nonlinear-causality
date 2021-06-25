@@ -1,7 +1,7 @@
-numpy
+numpy==1.18.5
 torch
-scipy
-matplotlib
+scipy==1.4.1 
+matplotlib==3.2.1
 sklearn
 warnings
 os 
