@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+The function separates input time-series data into pieces of data, based on Taken's theorem to represent system dynamics within the state-space.
 
 @Reference: 
 Wismüller, A., Dsouza, A.M., Vosoughi, M.A. et al. 
