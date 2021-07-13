@@ -7,7 +7,7 @@ The code converts multivariate time-series data to graph adjacency matrix that r
 
 ## Contributions
 
-Contributions of this work.
+By modeling interactions with nonlinear state-space transformations from limited observational data, lsNGC identifies casual relations with no explicit a priori assumptions on functional interdependence between component time series in a computationally efficient manner.
 
 ## Workflow
 
