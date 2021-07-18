@@ -15,6 +15,9 @@ from normalize_0_mean_1_std import normalize_0_mean_1_std
 from calc_f_stat import calc_f_stat
 from multivariate_split import multivariate_split
 
+"""
+This code includes the main functionality of the proposed method. 
+"""
 
 def lsNGC(inp_series, ar_order=1, k_f=3, k_g=2, normalize=1):
     if normalize:
