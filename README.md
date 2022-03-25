@@ -3,6 +3,8 @@
 
 ### Question: how to obtain a causal graph that defines the underlying generative process of large-scale multivariate data? Mainly, how to do so when the time-series observations are short and nonlinearly related?
 
+## Easy run with colab
+https://colab.research.google.com/github/ali-vosoughi/Large-scale-nonlinear-causality/blob/main/Demo_lsNGC.ipynb
 
 ## Background
 Identifying nonlinear and directed relations between components of a complex system, especially from simultaneously observed time series, is an actively growing area of research. By modeling interactions with nonlinear state-space transformations from limited observational data, lsNGC identifies casual relations with no explicit a priori assumptions on functional interdependence between component time series in a computationally efficient manner.
