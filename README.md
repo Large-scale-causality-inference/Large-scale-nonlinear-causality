@@ -11,7 +11,9 @@ https://colab.research.google.com/github/ali-vosoughi/Large-scale-nonlinear-caus
 Identifying nonlinear and directed relations between components of a complex system, especially from simultaneously observed time series, is an actively growing area of research. By modeling interactions with nonlinear state-space transformations from limited observational data, lsNGC identifies casual relations with no explicit a priori assumptions on functional interdependence between component time series in a computationally efficient manner.
 
 ## Contributions
-- Here, we introduce large-scale nonlinear Granger causality (lsNGC) which facilitates conditional Granger causality between two multivariate time series conditioned on a large number of confounding time series with a small number of observations.
+- Introduce large-scale nonlinear Granger causality (lsNGC) 
+- Is conditional Granger causality between two multivariate time series conditioned on a large number of confounding time series
+- Useful for observations with limited number of time-series samples, but large spatial resolution.
 - The code converts multivariate time-series data to graph adjacency matrix that represents causal relationships. 
 
 ## Workflow
@@ -27,6 +29,7 @@ Large-scale nonlinear Granger causality adopts theoretical concepts from Granger
 If you use this code (partially or as a whole), please cite the following paper:
 
 - Wismüller, A., Dsouza, A.M., Vosoughi, M.A. et al. Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data. Sci Rep 11, 7817 (2021). https://doi.org/10.1038/s41598-021-87316-6
+
 
 - The public access to the paper is available here: https://www.nature.com/articles/s41598-021-87316-6
 
