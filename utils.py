@@ -19,6 +19,10 @@ from multivariate_split import multivariate_split
 This code includes the main functionality of the proposed method. 
 """
 
+"""
+The file includes the primary function which calculates Granger causality using lsNGC. 
+"""
+
 def lsNGC(inp_series, ar_order=1, k_f=3, k_g=2, normalize=1):
     if normalize:
         X_normalized=normalize_0_mean_1_std(inp_series)

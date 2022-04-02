@@ -9,7 +9,7 @@ Output: f_GC as values of f-statistic
 - "n" is the number of time-delayed vectors. 
 
 @Reference: 
-Wismüller, A., Dsouza, A.M., Vosoughi, M.A. et al. 
+Wismüller, A., Dsouza, A.M., Vosoughi, M.A., and Abidin, Anas.
 Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data. Sci Rep 11, 7817 (2021).
 
 """
