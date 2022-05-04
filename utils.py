@@ -112,25 +112,9 @@ def lsNGC(inp_series, ar_order=1, k_f=3, k_g=2, normalize=1):
         f_zs=np.array([F[ii]/sum(F[ii]) for ii in range(len(F))])
 
         # Prediction in the presence of x_s
-#        dims=np.max([k_f,k_g])
         num_samples=f_zs.shape[0]
-#        f_new=np.ones((num_samples,dims))
-#        g_new=np.ones((num_samples,dims))
-#
-#        for ii in range(f_new.shape[0]):
-#            f_new[ii,:f_zs.shape[1]]=f_zs[ii,:]
-#            g_new[ii,:g_ws.shape[1]]=g_ws[ii,:]
-#        fg_combined=np.concatenate((g_new,f_new),axis=1)
-#
-#        GTG= np.dot(fg_combined.T,fg_combined)
-#        GTG_inv= np.linalg.inv(GTG)
-#        fac= np.dot(GTG_inv,fg_combined.T)
-#        W_presence= np.dot(fac,Z_train_label)
-#
-#        prediction_presence= np.dot(fg_combined,W_presence)
-#        error_presence=prediction_presence-np.array(Z_train_label)
-        f_new=np.concatenate((0.5*f_zs,0.5*g_ws),axis=1)
 
+        f_new=np.concatenate((0.5*f_zs,0.5*g_ws),axis=1)
         GTG= np.dot(f_new.T,f_new)
         GTG_inv= np.linalg.pinv(GTG)
         fac= np.dot(GTG_inv,f_new.T)
