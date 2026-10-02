@@ -1,0 +1,5 @@
+* text=auto eol=lf
+legacy/* -text
+*.npz -text
+*.mat -text
+*.png -text

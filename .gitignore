@@ -1,1 +1,10 @@
 __pycache__/
+
+.legacy-venv/
+.venv/
+.venv-clean/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/

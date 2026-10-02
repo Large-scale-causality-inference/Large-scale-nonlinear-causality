@@ -1,0 +1,16 @@
+cycler==0.12.1
+decorator==5.3.1
+future==1.0.0
+joblib==1.4.2
+kiwisolver==1.4.7
+matplotlib==3.2.1
+networkx==2.4
+numpy==1.18.5
+pyparsing==3.1.4
+python-dateutil==2.9.0.post0
+scikit-learn==0.23.1
+scipy==1.4.1
+six==1.17.0
+sklearn==0.0
+threadpoolctl==3.5.0
+torch==1.5.1+cpu
