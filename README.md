@@ -107,3 +107,8 @@ Axel Wismüller, Adora M. Dsouza, M. Ali Vosoughi, and Anas Abidin. “Large-sca
 ```
 
 Code is distributed under the [MIT License](LICENSE).
+
+
+## Patent notice
+
+The large-scale Granger causality methods implemented in this repository are the subject of patent rights held by Axel Wismüller and the University of Rochester. The MIT licence of this code grants no rights under those patents. Academic and research use with citation is welcome; for any commercial use, contact the patent holders.
