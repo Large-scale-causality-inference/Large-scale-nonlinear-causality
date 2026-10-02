@@ -41,3 +41,8 @@ Public access to the paper is available [here](https://www.nature.com/articles/s
   year={2021},
   publisher={Nature Publishing Group UK London}
 }
+
+
+## Patent notice
+
+The large-scale Granger causality methods implemented in this repository are the subject of patent rights held by Axel Wismüller and the University of Rochester. The MIT licence of this code grants no rights under those patents. Academic and research use with citation is welcome; for any commercial use, contact the patent holders.
