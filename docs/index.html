@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Large-scale nonlinear Granger causality: reference code and a reproducible example for inferring directed dependence from short multivariate time series.">
+  <meta name="theme-color" content="#f8fafb">
+  <title>lsNGC · Large-scale nonlinear Granger causality</title>
+  <style>
+    :root { color-scheme: light; --ink: #152c3b; --muted: #526575; --accent: #096557; --line: #dce5e9; --paper: #fff; --wash: #f8fafb; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--wash); color: var(--ink); font: 16px/1.7 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    a { color: var(--accent); text-underline-offset: 0.2em; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid #b46b16; outline-offset: 5px; border-radius: 2px; }
+    .skip { position: absolute; top: -100px; left: 16px; padding: 10px 16px; background: white; z-index: 2; }
+    .skip:focus { top: 12px; }
+    .wrap { width: min(1080px, calc(100% - 64px)); margin-inline: auto; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 24px; border-bottom: 1px solid var(--line); }
+    .wordmark { color: var(--ink); font-size: 23px; letter-spacing: -0.055em; font-weight: 750; text-decoration: none; }
+    .wordmark span { color: var(--accent); }
+    nav { display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px; }
+    nav a { color: var(--muted); text-decoration: none; }
+    nav a:hover { color: var(--accent); text-decoration: underline; }
+    .hero { padding-block: 70px 54px; }
+    .eyebrow { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    h1 { max-width: 970px; font-size: clamp(34px, 4.7vw, 58px); line-height: 1.13; letter-spacing: -0.045em; font-weight: 650; margin: 18px 0 24px; text-wrap: balance; }
+    .authors { max-width: 820px; font-size: 18px; line-height: 1.8; margin: 0 0 12px; }
+    .publication { color: var(--muted); font-size: 15px; margin: 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 9px 18px; border: 1px solid var(--line); border-radius: 6px; background: white; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 600; }
+    .button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+    .button:hover { box-shadow: 0 2px 6px #152c3b12; text-decoration: underline; }
+    .section { padding-block: 40px; border-top: 1px solid var(--line); scroll-margin-top: 20px; }
+    .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+    .section-number { color: var(--accent); font-size: 12px; font-weight: 700; letter-spacing: 0.03em; }
+    h2 { margin: 0; font-size: 26px; line-height: 1.3; letter-spacing: -0.025em; font-weight: 650; }
+    h3 { margin: 0 0 8px; font-size: 17px; line-height: 1.4; font-weight: 650; }
+    p { margin: 0 0 18px; }
+    .abstract { max-width: 960px; font-size: 16px; line-height: 1.85; }
+    .note { color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .pipeline { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 0; margin: 0 0 18px; counter-reset: step; }
+    .pipeline li { border: 1px solid var(--line); border-radius: 7px; background: var(--paper); padding: 22px 18px 20px; counter-increment: step; }
+    .pipeline li::before { content: "0" counter(step); display: block; margin-bottom: 26px; color: var(--accent); font-size: 13px; font-weight: 700; }
+    .pipeline p { color: var(--muted); font-size: 14px; line-height: 1.65; margin: 0; }
+    figure { margin: 0; padding: 22px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+    figure img { display: block; width: 100%; height: auto; }
+    figcaption { max-width: 900px; color: var(--muted); font-size: 14px; margin-top: 14px; line-height: 1.7; }
+    .code-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 22px; }
+    .code-grid > div { min-width: 0; }
+    pre { margin: 0; background: #eef3f5; border: 1px solid var(--line); border-radius: 7px; padding: 20px; overflow-x: auto; font-size: 13px; line-height: 1.8; tab-size: 4; }
+    code { font-family: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    p code, figcaption code { font-size: 0.9em; }
+    .install-note { margin-top: 16px; }
+    .citation { white-space: pre-wrap; overflow-wrap: anywhere; }
+    footer { margin-top: 16px; border-top: 1px solid var(--line); padding-block: 26px 42px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; color: var(--muted); font-size: 13px; }
+    footer p { margin: 0; }
+    @media (max-width: 850px) { .pipeline { grid-template-columns: repeat(2, 1fr); } .code-grid { grid-template-columns: 1fr; } .hero { padding-block: 48px 42px; } }
+    @media (max-width: 520px) { .wrap { width: calc(100% - 36px); } .topbar { align-items: flex-start; padding-block: 20px; gap: 16px; } nav { gap: 12px 16px; font-size: 13px; justify-content: flex-end; } .hero { padding-block: 38px 34px; } h1 { font-size: 35px; } .authors { font-size: 16px; } .section { padding-block: 30px; } h2 { font-size: 23px; } .pipeline { grid-template-columns: 1fr; gap: 10px; } .pipeline li { padding: 18px; } .pipeline li::before { margin-bottom: 12px; } figure { padding: 10px; } figcaption { font-size: 13px; padding: 4px; } pre { padding: 15px; font-size: 12px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="wordmark" href="#main" aria-label="lsNGC home">ls<span>NGC</span></a>
+      <nav aria-label="Page navigation">
+        <a href="#method">Method</a><a href="#example">Example</a><a href="#use">Code</a><a href="#citation">Citation</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="title">
+        <div class="eyebrow">Scientific Reports · 2021</div>
+        <h1 id="title">Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data</h1>
+        <p class="authors">Axel Wismüller, Adora M. Dsouza, M. Ali Vosoughi, Anas Abidin</p>
+        <p class="publication">Scientific Reports 11, 7817 (2021) · <a href="https://doi.org/10.1038/s41598-021-87316-6">10.1038/s41598-021-87316-6</a></p>
+        <div class="actions">
+          <a class="button primary" href="https://doi.org/10.1038/s41598-021-87316-6">Read the paper ↗</a>
+          <a class="button" href="https://github.com/ali-vosoughi/Large-scale-nonlinear-causality">View code ↗</a>
+          <a class="button" href="https://ali-vosoughi.github.io/publications/lsngc/">Paper page ↗</a>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="abstract-title">
+        <div class="section-head"><span class="section-number">01</span><h2 id="abstract-title">Abstract</h2></div>
+        <p class="abstract" id="paper-abstract">A key challenge to gaining insight into complex systems is inferring nonlinear causal directional relations from observational time-series data. Specifically, estimating causal relationships between interacting components in large systems with only short recordings over few temporal observations remains an important, yet unresolved problem. Here, we introduce large-scale nonlinear Granger causality (lsNGC) which facilitates conditional Granger causality between two multivariate time series conditioned on a large number of confounding time series with a small number of observations. By modeling interactions with nonlinear state-space transformations from limited observational data, lsNGC identifies casual relations with no explicit a priori assumptions on functional interdependence between component time series in a computationally efficient manner. Additionally, our method provides a mathematical formulation revealing statistical significance of inferred causal relations. We extensively study the ability of lsNGC in inferring directed relations from two-node to thirty-four node chaotic time-series systems. Our results suggest that lsNGC captures meaningful interactions from limited observational data, where it performs favorably when compared to traditionally used methods. Finally, we demonstrate the applicability of lsNGC to estimating causality in large, real-world systems by inferring directional nonlinear, causal relationships among a large number of relatively short time series acquired from functional Magnetic Resonance Imaging (fMRI) data of the human brain.</p>
+        <p class="note">Abstract reproduced without changes from Wismüller et al. (2021), <a href="https://doi.org/10.1038/s41598-021-87316-6">Scientific Reports</a>. © The Author(s) 2021. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+      </section>
+
+      <section class="section" id="method" aria-labelledby="method-title">
+        <div class="section-head"><span class="section-number">02</span><h2 id="method-title">How it works</h2></div>
+        <ol class="pipeline">
+          <li><h3>Form the history</h3><p>Build lagged state vectors for a candidate source and for the remaining observed time series.</p></li>
+          <li><h3>Represent nonlinearities</h3><p>Find representative k-means centers and map the states through normalized radial basis functions.</p></li>
+          <li><h3>Compare predictions</h3><p>Fit one model using both representations and another using only the remaining time series.</p></li>
+          <li><h3>Measure influence</h3><p>Compare prediction errors and use the F-statistic to assess the source's directed influence on each target.</p></li>
+        </ol>
+        <p class="note">Based on the paper's Methods, equations (1)–(5), and Supplementary Information, section 2. <a href="https://doi.org/10.1038/s41598-021-87316-6">Read the method</a>.</p>
+      </section>
+
+      <section class="section" id="example" aria-labelledby="example-title">
+        <div class="section-head"><span class="section-number">03</span><h2 id="example-title">A reproducible example</h2></div>
+        <figure>
+          <img src="figures/lsngc_logistic3.png" width="1536" height="752" alt="Two three-by-three matrices: the true directed adjacency of the bundled logistic system on the left and the recovered continuous lsNGC affinity on the right. Rows are source nodes and columns are target nodes.">
+          <figcaption>Bundled <code>logistic_3.mat</code>, realization 0, final 200 samples; lag order 1, <code>k_f = 2</code>, <code>k_g = 2</code>, k-means seed 123. Rows are sources; columns are targets. The recovered affinity is a continuous log ratio of prediction-error variances, with negative values and the diagonal set to zero. Generated with the current package; <a href="https://github.com/ali-vosoughi/Large-scale-nonlinear-causality/blob/main/docs/figures/make_figure.py">reproduce this figure</a>.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section" id="use" aria-labelledby="use-title">
+        <div class="section-head"><span class="section-number">04</span><h2 id="use-title">Use lsNGC</h2></div>
+        <p>Python 3.10 or newer. Input arrays use one row per time series and one column per sample.</p>
+        <div class="code-grid">
+          <div><h3>Install from the repository</h3>
+            <pre><code>git clone https://github.com/ali-vosoughi/Large-scale-nonlinear-causality.git
+cd Large-scale-nonlinear-causality
+python -m pip install -e .</code></pre>
+          </div>
+          <div><h3>Run the bundled example</h3>
+            <pre><code>from lsngc import lsNGC
+from lsngc.simulate import load_logistic3
+
+series, truth = load_logistic3(n_samples=200)
+affinity, f_statistic = lsNGC(
+    series, ar_order=1, k_f=2, k_g=2, seed=123
+)</code></pre>
+          </div>
+        </div>
+        <p class="note install-note">The <a href="https://github.com/ali-vosoughi/Large-scale-nonlinear-causality#readme">README</a> documents the API, command line, and compatibility tests. The <a href="https://github.com/ali-vosoughi/Large-scale-nonlinear-causality/blob/main/Demo_lsNGC.ipynb">demo notebook</a> repeats the repository's logistic benchmark.</p>
+      </section>
+
+      <section class="section" id="citation" aria-labelledby="citation-title">
+        <div class="section-head"><span class="section-number">05</span><h2 id="citation-title">Citation</h2></div>
+        <p>Wismüller, A., Dsouza, A. M., Vosoughi, M. A., and Abidin, A. Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data. <em>Scientific Reports</em> 11, 7817 (2021). <a href="https://doi.org/10.1038/s41598-021-87316-6">DOI: 10.1038/s41598-021-87316-6</a>.</p>
+        <pre class="citation"><code>@article{wismuller2021large,
+  title={Large-scale nonlinear Granger causality for inferring directed dependence from short multivariate time-series data},
+  author={Wism{\&quot;u}ller, Axel and Dsouza, Adora M and Vosoughi, M Ali and Abidin, Anas},
+  journal={Scientific reports},
+  volume={11},
+  number={1},
+  pages={7817},
+  year={2021},
+  publisher={Nature Publishing Group UK London}
+}</code></pre>
+      </section>
+    </main>
+    <footer>
+      <p>Code: Ali Vosoughi · <a href="https://ali-vosoughi.github.io/">Showcase</a> · <a href="https://ali-vosoughi.github.io/publications/lsngc/">Paper page</a></p>
+      <p><a href="https://github.com/ali-vosoughi/Large-scale-nonlinear-causality/blob/main/LICENSE">MIT License</a> · Static project page</p>
+    </footer>
+  </div>
+</body>
+</html>
